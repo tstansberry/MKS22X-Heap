@@ -1,10 +1,19 @@
 public class MyHeap {
 
+  public static void main(String[] args) {
+    int size = 15;
+    int[] test = new int[size];
+    for (int i = 0; i < size; i++) test[i] = (int)(Math.random()*9);
+    HeapPrinter.print(test);
+    heapsort(test);
+    HeapPrinter.print(test);
+  }
+
   private static void pushDown(int[] data, int size, int index) {
     boolean go  = true; //Boolean to check whether or not to keep switching
     while (go && index < size) {
-      if (2*index+2 < size) {
-        if (data[index] >= data[2*index+1] && data[index] >= data[2*index+2]) {
+      if (2 * index + 2 < size) {
+        if (data[index] >= data[2 * index + 1] && data[index] >= data[2 * index + 2]) {
           go = false;
         }
         else if (data[2 * index + 1] > data[2 * index + 2]){
@@ -27,9 +36,9 @@ public class MyHeap {
 //Algorithm for child: 2(index + 1)
 
   private static void swap(int[] arr, int x, int y) {
-    int temp = arr[x];
+    int holder = arr[x];
     arr[x] = arr[y];
-    arr[y] = temp;
+    arr[y] = holder;
   }
 
   private static void pushUp(int[] data, int index) {
