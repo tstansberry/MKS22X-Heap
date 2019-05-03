@@ -13,7 +13,7 @@ public class MyHeap {
     boolean go  = true; //Boolean to check whether or not to keep switching
     while (go && index < size) {
       if (2 * index + 2 < size) {
-        if (data[index] >= data[2 * index + 1] && data[index] >= data[2 * index + 2]) {
+        if (data[index] >= data[2 * index + 2] && data[index] >= data[2 * index + 1]) {
           go = false;
         }
         else if (data[2 * index + 1] > data[2 * index + 2]){
@@ -42,7 +42,18 @@ public class MyHeap {
   }
 
   private static void pushUp(int[] data, int index) {
-
+    boolean go = true;
+    while (go) {
+      if (index == 0) go = false;
+      else {
+        int parentI  = (index - 1) / 2;
+        if (data[parentI] < data[index]) {
+          swap(data, parentI, index);
+          index = parentI;
+        }
+        else go = false;
+      }
+    }
   }
 
   public static void heapify(int[] data) {
